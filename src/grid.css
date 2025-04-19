@@ -1,0 +1,90 @@
+body{
+    box-sizing: border-box;
+}
+.mian_cont{
+    display: flex;
+    box-sizing: border-box;
+}
+.number_col{
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: sticky;
+    left: 0;
+    top: 0;
+    background-color: white;
+    z-index: 20;
+}
+.corner{
+    width: 50px;
+    height: 25px;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-right-width: 3px;
+    border-right-color: #999999;
+    border-bottom-width: 3px ;
+    border-bottom-color: #999999;
+    box-sizing: border-box;
+    /* background-color: aqua; */
+    position: sticky;
+    left: 0;
+    top: 0;
+    z-index: 0;
+
+
+}
+.NumberCell{
+    width: 50px;
+    height: 20px;
+    border: 1px solid #ccc;
+    text-align: center;
+    align-content: center;
+    box-sizing: border-box;
+}
+
+.CharCell{
+    min-width: 100px;
+    min-height: 25px;
+    border: 1px solid #ccc;
+    text-align: center;
+    box-sizing: border-box;
+    align-content: center;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    /* background-color: aqua; */
+}
+.CharCell_head{
+    width: 100px;
+    height: 25px;
+    border: 1px solid #ccc;
+    text-align: center;
+    align-content: center;
+    box-sizing: border-box;
+    position: sticky;
+    left: 0;
+    top: 0;
+    z-index: 5;
+    background-color: white;
+}
+.charcell_inside_cell{
+    width: 100px;
+    height: 20px;
+    border: 1px solid #ccc;
+    text-align: left;
+    align-content: center;
+    box-sizing: border-box;
+    outline: none;
+    text-wrap: nowrap;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.selected{
+    /* border-color: blue; */
+    border: 2px solid blue !important;
+    border-radius: 2px;
+
+}
+
+  
