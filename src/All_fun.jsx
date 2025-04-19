@@ -3,6 +3,7 @@ import { useContext, useEffect,useRef  } from 'react';
 import { CellData } from './App';
 import './All_funCss.css';
 export function All_fun() {
+  // for bold 
   const labBoldRef = useRef(null);
   let {celData, setCelData, cellKey, setCellKey, currentSelectedForData} = useContext(CellData);
   // current boldStyle of selected cell;
@@ -11,14 +12,11 @@ export function All_fun() {
 
   useEffect(() => {
     const isBold = currentSelectedForData.current?.getAttribute('data-bold') || 'normal';
-    
     if (labBoldRef.current) {
       isBold === 'bold'
         ? labBoldRef.current.classList.add('bold')
         : labBoldRef.current.classList.remove('bold');
     }
-
-    
     setBoldIsChecked(isBold);
   }, [currentSelectedForData.current]);
 
@@ -44,7 +42,44 @@ export function All_fun() {
       return newBold;
     });
   };
+
+  // for italic
+
+  const lab_italic = useRef(null);
+  let [italicIsChecked, setItalicIsChecked] = useState('normal');
+
+  useEffect(() => {
+    const isItalic = currentSelectedForData.current?.getAttribute('data-style') || 'normal';
+    if (lab_italic.current) {
+      isItalic === 'italic'
+        ? labBoldRef.current.classList.add('italic')
+        : labBoldRef.current.classList.remove('italic');
+    }
+    setBoldIsChecked(isItalic);
+  }, [currentSelectedForData.current]);
+
+
+  let italicFn = ()=>{
+    setItalicIsChecked((prev)=>{
+      let newItalicVal = prev === 'italic' ? 'normal' : 'italic';
   
+      if(currentSelectedForData.current){
+        currentSelectedForData.current.style.fontStyle = newItalicVal
+        currentSelectedForData.current.setAttribute('data-italic', newItalicVal);
+      }
+      // for click seeing for user
+      if (lab_italic.current) {
+        newItalicVal === 'italic'
+          ? lab_italic.current.classList.add('italic')
+          : lab_italic.current.classList.remove('italic');
+      }
+      console.log('68',newItalicVal); 
+  
+      return newItalicVal;
+    })
+  }
+
+
   return (
     <>
       <div className='all_fun_cont'>
@@ -62,7 +97,7 @@ export function All_fun() {
             </div>
 
             <div className='italic_div_cont'>
-            <label htmlFor="italic" className='material-symbols-outlined' id='lab_italic'>format_italic</label>
+            <label htmlFor="italic" className='material-symbols-outlined' id='lab_italic' checked={italicIsChecked} ref={lab_italic} onClick={italicFn} data-italic={'normal'} >format_italic</label>
             <input type="checkbox" name="italic" id='italic' className='italic_class' style={{ visibility: "hidden" }} defaultValue={false} />
             </div>
 
