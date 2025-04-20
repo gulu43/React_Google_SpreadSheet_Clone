@@ -62,27 +62,28 @@ export function Grid_and_cells() {
 
                                 }}
                                 
-                                onFocus={(e)=>{
-                                    console.log(e.target.getAttribute('data-cellid'));
-                                    setCellKey(e.target.getAttribute('data-cellid'));
-
-                                     
-                                    // Remove previous selection
-                                    if (currentSelected.current) {
-                                        currentSelected.current.classList.remove('selected');
-                                    }
-                                        // Add new selection
-                                        e.target.classList.add('selected');
-                                        currentSelected.current = e.target;
-                                    
-                                    //formula
+                                onFocus={(e) => {
+                                    const cellId = e.target.getAttribute('data-cellid');
+                                  
+                                    // Always set current selected cell
                                     currentSelectedForData.current = e.target;
-                                    setCelData(currentSelectedForData.current.textContent);
-                                    console.log(currentSelectedForData.current.textContent);
-
-                                    
-                                                                   
-                                }}>
+                                  
+                                    // Even if same cell is clicked again, this ensures re-render
+                                    setCellKey(prevKey => prevKey === cellId ? cellId + "_force" : cellId);
+                                  
+                                    // UI highlight logic
+                                    if (currentSelected.current) {
+                                      currentSelected.current.classList.remove('selected');
+                                    }
+                                    e.target.classList.add('selected');
+                                    currentSelected.current = e.target;
+                                  
+                                    // Set text for formula bar or similar
+                                    setCelData(e.target.textContent);
+                                    console.log('Selected Cell:', cellId);
+                                    console.log('Cell Text:', e.target.textContent);
+                                  }}
+                                  >
 
                                 </span>
                             ))}

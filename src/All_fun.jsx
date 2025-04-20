@@ -13,12 +13,12 @@ export function All_fun() {
   useEffect(() => {
     const isBold = currentSelectedForData.current?.getAttribute('data-bold') || 'normal';
     if (labBoldRef.current) {
-      isBold === 'bold'
+      isBold == 'bold'
         ? labBoldRef.current.classList.add('bold')
         : labBoldRef.current.classList.remove('bold');
     }
     setBoldIsChecked(isBold);
-  }, [currentSelectedForData.current]);
+  }, [cellKey]);
 
   // console.log('11 ',isBold + boldIsChecked); 
   
@@ -49,35 +49,44 @@ export function All_fun() {
   let [italicIsChecked, setItalicIsChecked] = useState('normal');
 
   useEffect(() => {
-    const isItalic = currentSelectedForData.current?.getAttribute('data-style') || 'normal';
+    if (!currentSelectedForData.current) return;
+  
+    const isItalic = currentSelectedForData.current.getAttribute('data-italic') || 'normal';
+  
     if (lab_italic.current) {
-      isItalic === 'italic'
-        ? labBoldRef.current.classList.add('italic')
-        : labBoldRef.current.classList.remove('italic');
+      if (isItalic === 'italic') {
+        lab_italic.current.classList.add('Uni_select');
+      } else {
+        lab_italic.current.classList.remove('Uni_select');
+      }
     }
-    setBoldIsChecked(isItalic);
-  }, [currentSelectedForData.current]);
+  
+    setItalicIsChecked(isItalic);
+  }, [cellKey]); // This ensures effect runs when selection changes
+  
 
 
-  let italicFn = ()=>{
-    setItalicIsChecked((prev)=>{
+  let italicFn = () => {
+    setItalicIsChecked((prev) => {
       let newItalicVal = prev === 'italic' ? 'normal' : 'italic';
   
-      if(currentSelectedForData.current){
-        currentSelectedForData.current.style.fontStyle = newItalicVal
+      if (currentSelectedForData.current) {
+        currentSelectedForData.current.style.fontStyle = newItalicVal;
         currentSelectedForData.current.setAttribute('data-italic', newItalicVal);
       }
-      // for click seeing for user
+  
       if (lab_italic.current) {
-        newItalicVal === 'italic'
-          ? lab_italic.current.classList.add('italic')
-          : lab_italic.current.classList.remove('italic');
+        if (newItalicVal === 'italic') {
+          lab_italic.current.classList.add('Uni_select');
+        } else {
+          lab_italic.current.classList.remove('Uni_select');
+        }
       }
-      console.log('68',newItalicVal); 
   
       return newItalicVal;
-    })
-  }
+    });
+  };
+  
 
 
   return (
