@@ -194,3 +194,9 @@
     border-radius: 5px;
     padding: 5px !important;
 }
+.flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

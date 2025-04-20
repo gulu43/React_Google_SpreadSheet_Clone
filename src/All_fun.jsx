@@ -142,12 +142,16 @@ export function All_fun() {
           <label htmlFor='underline' className='material-symbols-outlined' id='labUnderline' ref={lab_underline} onClick={underlineFn}>format_underlined</label>
           <input type='checkbox' id='underline' style={{ visibility: 'hidden' }} />
 
+        <div className='flex'>
           <label htmlFor='colorInput' className='colorLabel'>A</label>
           <input type='color' id='colorInput' className='colorPicker' onChange={handleTextColor} />
+        </div>
 
+        <div className='flex'>
           <label htmlFor='bgTxt' className='label_bgColor material-symbols-outlined'>colors</label>
           <input type='color' id='bgTxt' className='input_bgColor' onChange={handleBgColor} />
-
+          </div>
+          
           <div className='textAlignContainer'>
             <label className='alignLabel material-symbols-outlined' ref={leftRef}>
               <input type='radio' name='alignment' value='left' onChange={handleAlignment} checked={alignment === 'left'} />
